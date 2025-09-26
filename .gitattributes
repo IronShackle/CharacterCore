@@ -1,0 +1,85 @@
+# ------------------------------------------------------------------------------
+# Prespec Character Core — .gitattributes
+# Goal: consistent LF line endings for text; correct treatment of Unity assets;
+#       clean diffs across Windows/macOS/Linux; minimal surprises for Codex.
+# ------------------------------------------------------------------------------
+
+# 1) Default behavior: normalize text; prefer LF in the repo
+*                 text=auto
+*.txt             text eol=lf
+*.md              text eol=lf
+
+# 2) Code and configs (always LF)
+*.cs              text eol=lf
+*.csproj          text eol=lf
+*.sln             text eol=lf
+*.json            text eol=lf
+*.yaml            text eol=lf
+*.yml             text eol=lf
+*.xml             text eol=lf
+*.ini             text eol=lf
+*.cfg             text eol=lf
+*.editorconfig    text eol=lf
+*.gitattributes   text eol=lf
+*.gitignore       text eol=lf
+
+# 3) Unity project text assets (YAML-based) — keep as text for sane diffs
+*.meta            text eol=lf
+*.unity           text eol=lf
+*.prefab          text eol=lf
+*.asset           text eol=lf
+*.mat             text eol=lf
+*.anim            text eol=lf
+*.controller      text eol=lf
+*.physicsmaterial2d text eol=lf
+*.shader          text eol=lf
+*.cginc           text eol=lf
+*.hlsl            text eol=lf
+*.compute         text eol=lf
+*.asmdef          text eol=lf
+*.asmref          text eol=lf
+
+# 4) Binary assets (no line-ending normalization)
+# Images
+*.png             binary
+*.jpg             binary
+*.jpeg            binary
+*.psd             binary
+*.tga             binary
+*.tif             binary
+*.tiff            binary
+*.bmp             binary
+*.exr             binary
+# Audio
+*.wav             binary
+*.mp3             binary
+*.ogg             binary
+*.aif             binary
+*.aiff            binary
+# Video
+*.mp4             binary
+*.mov             binary
+*.avi             binary
+*.webm            binary
+# 3D / Fonts / Misc binaries
+*.fbx             binary
+*.obj             binary
+*.blend           binary
+*.ttf             binary
+*.otf             binary
+*.zip             binary
+*.7z              binary
+*.rar             binary
+*.unitypackage    binary
+
+# ------------------------------------------------------------------------------
+# Optional: Unity Smart Merge (YAML merge) — requires git config/tooling
+# If you later configure UnityYAMLMerge, you can enable custom merging like this:
+# *.unity         merge=unityyamlmerge eol=lf
+# *.prefab        merge=unityyamlmerge eol=lf
+# *.asset         merge=unityyamlmerge eol=lf
+# And in your global/local git config:
+#   [merge "unityyamlmerge"]
+#     name = Unity SmartMerge (YAML)
+#     driver = "path/to/UnityYAMLMerge" merge -p %O %A %B
+# ------------------------------------------------------------------------------
