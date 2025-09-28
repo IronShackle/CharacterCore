@@ -1,0 +1,16 @@
+{
+  "name": "Prespec.CharacterCore.Editor",
+  "rootNamespace": "Prespec.CharacterCore.Editor",
+  "references": [
+    "Prespec.CharacterCore.Runtime"
+  ],
+  "includePlatforms": [ "Editor" ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

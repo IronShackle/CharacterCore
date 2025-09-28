@@ -1,0 +1,17 @@
+{
+  "name": "Prespec.CharacterCore.Tests.EditMode",
+  "rootNamespace": "Prespec.CharacterCore.Tests.EditMode",
+  "references": [
+    "Prespec.CharacterCore.Runtime"
+  ],
+  "includePlatforms": [ "Editor" ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [ "TestAssemblies" ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Prespec.CharacterCore.Tests.PlayMode",
+  "rootNamespace": "Prespec.CharacterCore.Tests.PlayMode",
+  "references": [
+    "Prespec.CharacterCore.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [ "TestAssemblies" ]
+}

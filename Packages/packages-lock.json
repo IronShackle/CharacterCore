@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.prespec.character-core": {
+      "version": "file:com.prespec.character-core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.inputsystem": "1.7.0"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "9.2.0",
       "depth": 1,
@@ -160,6 +168,15 @@
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.14.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

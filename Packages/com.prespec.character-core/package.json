@@ -1,0 +1,33 @@
+{
+  "name": "com.prespec.character-core",
+  "displayName": "Prespec Character Core",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "A modular character coordination framework for Unity. Provides a Coordinator, capability contracts, core modules (Locomotion, Sprint, Dodge, Stamina), and editor tools (Quick Builder, Dashboard, Validator).",
+  "keywords": [
+    "character",
+    "coordinator",
+    "modules",
+    "movement",
+    "sprint",
+    "dodge",
+    "stamina",
+    "unity"
+  ],
+  "category": "Gameplay",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Prespec",
+    "url": "https://github.com/prespec" 
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.7.0"
+  },
+  "samples": [
+    {
+      "displayName": "Top-Down 2D Quickstart",
+      "description": "A basic sample scene showing a character prefab with movement, sprint, dodge, and stamina setup.",
+      "path": "Samples~/TopDown2D Quickstart"
+    }
+  ]
+}
