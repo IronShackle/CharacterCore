@@ -20,20 +20,20 @@ namespace Prespec.CharacterCore.Runtime.Coordinator
     {
         [Header("Hosts (optional; must implement the interfaces)")]
         [SerializeField] private Component _inputReaderHost;    // IInputReader
-        [SerializeField] private Component _movementHost;       // IMovement2D
+        [SerializeField] private Component _movementHost;       // IMovementService
         [SerializeField] private bool _autoDiscover = true;     // Gather IActionModule + IResourceProvider on enable
 
         private IInputReader _inputReader;
-        private IMovement2D _movement;
+        private IMovementService _movement;
 
-        private readonly CoordinatorDirectory _directory = new CoordinatorDirectory();
+        private readonly ResourceRegistry _directory = new ResourceRegistry();
         private readonly CoordinatorSignals _signals = new CoordinatorSignals();
         private readonly List<IActionModule> _actions = new List<IActionModule>(8);
 
         private InputSnapshot _latchedSnapshot;
 
         /// <summary>Resource registrations for this character.</summary>
-        public CoordinatorDirectory Directory => _directory;
+        public ResourceRegistry Directory => _directory;
 
         /// <summary>Current action modules discovered on this character.</summary>
         public IReadOnlyList<IActionModule> Actions => _actions;
@@ -45,14 +45,14 @@ namespace Prespec.CharacterCore.Runtime.Coordinator
         {
             // Keep serialized host fields honest (must implement required interfaces).
             if (_inputReaderHost != null && !(_inputReaderHost is IInputReader)) _inputReaderHost = null;
-            if (_movementHost != null && !(_movementHost is IMovement2D)) _movementHost = null;
+            if (_movementHost != null && !(_movementHost is IMovementService)) _movementHost = null;
         }
 
         private void Awake()
         {
             // Resolve hosts if assigned.
             _inputReader = _inputReaderHost as IInputReader;
-            _movement    = _movementHost   as IMovement2D;
+            _movement    = _movementHost   as IMovementService;
         }
 
         private void OnEnable()
@@ -79,7 +79,7 @@ namespace Prespec.CharacterCore.Runtime.Coordinator
 
             // Hosts: allow serialized assignment or discovery on this object.
             _inputReader = (_inputReaderHost != null) ? _inputReaderHost as IInputReader : GetComponent<IInputReader>();
-            _movement    = (_movementHost    != null) ? _movementHost    as IMovement2D  : GetComponent<IMovement2D>();
+            _movement    = (_movementHost    != null) ? _movementHost    as IMovementService  : GetComponent<IMovementService>();
 
             // Actions: collect from this object and children (common prefab pattern).
             GetComponentsInChildren(true, _actions);
@@ -123,7 +123,7 @@ namespace Prespec.CharacterCore.Runtime.Coordinator
         }
 
         /// <summary>Programmatic host injection for tests or custom setups.</summary>
-        public void SetHosts(IInputReader inputReader, IMovement2D movement)
+        public void SetHosts(IInputReader inputReader, IMovementService movement)
         {
             _inputReader = inputReader;
             _movement = movement;

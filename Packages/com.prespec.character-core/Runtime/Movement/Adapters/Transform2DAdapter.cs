@@ -7,11 +7,11 @@ namespace Prespec.CharacterCore.Runtime.Movement.Adapters
 {
     /// <summary>
     /// Adapter for Transform-based (non-physics) 2D application.
-    /// Translates the motor-agnostic MovementCommand into Transform2DMotor calls.
+    /// Translates the motor-agnostic MovementInstruction into Transform2DMotor calls.
     /// - Ignores Z (2D); do not perform any blending here.
     /// </summary>
     [RequireComponent(typeof(Transform2DMotor))]
-    public sealed class Transform2DAdapter : MonoBehaviour, IMovementAdapter2D
+    public sealed class Transform2DAdapter : MonoBehaviour, IMovementAdapter
     {
         private Transform2DMotor _motor;
 
@@ -25,14 +25,14 @@ namespace Prespec.CharacterCore.Runtime.Movement.Adapters
             }
         }
 
-        public void Apply(MovementCommand command, float dt)
+        public void Apply(MovementInstruction instruction, float dt)
         {
             if (_motor == null) return;
 
             // Base velocity this tick (already accel/modifiers in the service)
-            if (command.LocksCount <= 0)
+            if (instruction.LocksCount <= 0)
             {
-                _motor.SetBaseVelocity(command.Desired.x, command.Desired.y, dt);
+                _motor.SetBaseVelocity(instruction.Desired.x, instruction.Desired.y, dt);
             }
             else
             {
@@ -40,21 +40,21 @@ namespace Prespec.CharacterCore.Runtime.Movement.Adapters
             }
 
             // One-tick impulse displacement (world units)
-            if (command.Impulse.sqrMagnitude > 0f)
+            if (instruction.Impulse.sqrMagnitude > 0f)
             {
-                _motor.AddInstantDisplacement(command.Impulse.x, command.Impulse.y);
+                _motor.AddInstantDisplacement(instruction.Impulse.x, instruction.Impulse.y);
             }
 
             // Overlay displacement (world units, this tick)
-            if (command.OverlayDelta.sqrMagnitude > 0f)
+            if (instruction.OverlayDelta.sqrMagnitude > 0f)
             {
-                _motor.AddInstantDisplacement(command.OverlayDelta.x, command.OverlayDelta.y);
+                _motor.AddInstantDisplacement(instruction.OverlayDelta.x, instruction.OverlayDelta.y);
             }
 
             // Facing (optional)
-            if (command.Face.sqrMagnitude > 0f)
+            if (instruction.Face.sqrMagnitude > 0f)
             {
-                _motor.SetFacing(command.Face.x, command.Face.y);
+                _motor.SetFacing(instruction.Face.x, instruction.Face.y);
             }
         }
     }
